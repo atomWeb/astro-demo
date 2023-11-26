@@ -4,8 +4,9 @@ import Layout from '../layouts/Layout.astro';
 import PostList from '../components/PostList.astro';
 import Main from '../components/Main.astro';
 import H1 from '../components/H1.astro';
+import Pagination from '../components/Pagination.astro';
 
-const allPosts = await getCollection('posts');
+const posts = (await getCollection('posts')).slice(0, 6);
 ---
 
 <Layout title="Blog - Astro Course">
@@ -14,6 +15,12 @@ const allPosts = await getCollection('posts');
     <p class="text-zinc-900 text-2xl mb-24 max-sm:mb-14">
       Join the community and learn from Music producers and Enthusiasts
     </p>
-    <PostList posts={allPosts} />
+    <div class="mb-12">
+      <Pagination nextURL="/blog/2" />
+    </div>
+    <PostList posts={posts} />
+    <div class="mb-36">
+      <Pagination nextURL="/blog/2" />
+    </div>
   </Main>
 </Layout>
